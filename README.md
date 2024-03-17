@@ -1,3 +1,10 @@
+# Snowy-Kmp
+Snowy产品的移动端前端，基于KMP开发，可搭配Snowy单体后端或Snowy-Cloud微服务后端使用，让业务迁移到手机端管理，更方便更快捷。
+## 介绍
+Snowy谐音“小诺”，恰应小诺团队名称；意思为”下雪的、纯洁的“，寓意框架追求简洁至上，大道至简。
+
+
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
