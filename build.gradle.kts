@@ -5,4 +5,6 @@ plugins {
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.jetbrainsCompose) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.kotlinNativeCocoapods) apply false
+    alias(libs.plugins.kotlinPluginSerialization) apply false
 }

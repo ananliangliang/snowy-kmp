@@ -1,0 +1,27 @@
+PODS:
+  - composeApp (1.0.0):
+    - GMObjC
+  - GMObjC (3.3.2):
+    - GMOpenSSL
+  - GMOpenSSL (3.0.3)
+
+DEPENDENCIES:
+  - composeApp (from `../composeApp`)
+
+SPEC REPOS:
+  trunk:
+    - GMObjC
+    - GMOpenSSL
+
+EXTERNAL SOURCES:
+  composeApp:
+    :path: "../composeApp"
+
+SPEC CHECKSUMS:
+  composeApp: 166ac49f04e69ac1f5b4b90cb78bbcb50924aa0c
+  GMObjC: 5e251e7ab2bf8127dda70f90e827a5323137ca7f
+  GMOpenSSL: 0c120d112d283fca2518c754c2d98e7993907c3d
+
+PODFILE CHECKSUM: 63475b3ee354d7ef8bd0342ac5f1b10b3565d6e2
+
+COCOAPODS: 1.15.2

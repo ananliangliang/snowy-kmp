@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+import com.android.build.gradle.internal.packaging.defaultExcludes
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -6,6 +8,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.kotlinNativeCocoapods)
+    alias(libs.plugins.kotlinPluginSerialization)
 }
 
 kotlin {
@@ -36,16 +40,9 @@ kotlin {
     
     jvm("desktop")
     
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
+    iosArm64()
+    iosSimulatorArm64()
+
     
     sourceSets {
         val desktopMain by getting
@@ -55,6 +52,8 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.bcprov.jdk18on) // hutool crypto国密依赖
+            implementation(libs.hutool.crypto)
             implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
@@ -66,11 +65,18 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.voyager.navigator)
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.bcprov.jdk18on) // hutool crypto国密依赖
+            implementation(libs.hutool.crypto)
             implementation(libs.ktor.client.java)
         }
         iosMain.dependencies {
@@ -78,7 +84,20 @@ kotlin {
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js)
+            implementation(npm("sm-crypto", "0.3.13"))
         }
+    }
+    cocoapods {
+        version = "1.0.0"
+        ios.deploymentTarget = "15.3"
+        summary = "CocoaPods test library"
+        homepage = "https://github.com/JetBrains/kotlin "
+        podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+        pod("GMObjC")
     }
 }
 
@@ -113,6 +132,10 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
+    }
+    packaging {
+        // 解决java中相同的命名导致报错
+        resources.excludes.add("META-INF/INDEX.LIST")
     }
 }
 
