@@ -8,8 +8,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
+import di.koinModule
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.KoinApplication
 import ui.nav.NavBar
 import ui.screen.LoginScreen
 import ui.screen.OriginScreen
@@ -17,32 +19,27 @@ import ui.screen.OriginScreen
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    KoinApplication({ modules(koinModule) }) {
+        MaterialTheme {
+            var isLogin by remember { mutableStateOf(false) }
+            val snackbarHostState = remember { SnackbarHostState() }
+            val coroutineScope = rememberCoroutineScope()
 
-        var isLogin by remember { mutableStateOf(false) }
-        val snackbarHostState = remember { SnackbarHostState() }
-        val coroutineScope = rememberCoroutineScope()
-
-        if (isLogin)
-            Navigator(OriginScreen) {
-                Scaffold(
-                    bottomBar = { NavBar() },
-                    content = {
-                        Box(Modifier.padding(it)) {
-                            CurrentScreen()
-                        }
-                    },
-                    snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-                )
-            }
-        else
-            LoginScreen {
-                coroutineScope.launch {
-                    snackbarHostState.showSnackbar(it)
+            if (isLogin)
+                Navigator(OriginScreen) {
+                    Scaffold(
+                        bottomBar = { NavBar() },
+                        content = { Box(Modifier.padding(it)) { CurrentScreen() } },
+                        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+                    )
                 }
-                isLogin = true
-            }
-
-
+            else
+                LoginScreen {
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(it)
+                    }
+                    isLogin = true
+                }
+        }
     }
 }

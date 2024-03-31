@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-import com.android.build.gradle.internal.packaging.defaultExcludes
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -7,6 +5,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.googleDevtoolsKsp)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinNativeCocoapods)
     alias(libs.plugins.kotlinPluginSerialization)
@@ -64,6 +63,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.core)
