@@ -28,7 +28,7 @@ fun App() {
             if (isLogin)
                 Navigator(OriginScreen) {
                     Scaffold(
-                        bottomBar = { NavBar() },
+                        bottomBar = { NavBar { isLogin = false } },
                         content = { Box(Modifier.padding(it)) { CurrentScreen() } },
                         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
                     )

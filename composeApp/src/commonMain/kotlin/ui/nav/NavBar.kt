@@ -19,11 +19,12 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 import snowy_kmp.composeapp.generated.resources.*
+import ui.screen.MineScreen
 import ui.screen.OriginScreen
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun NavBar() {
+fun NavBar(onLogout: () -> Unit) {
     var selectedItem by remember { mutableIntStateOf(0) }
     val items = listOf(
         stringResource(Res.string.nav_home),
@@ -37,7 +38,7 @@ fun NavBar() {
     val outlinedIcons = listOf(
         Icons.Outlined.Home, Icons.Outlined.Apps, Icons.AutoMirrored.Outlined.Chat, Icons.Outlined.Person
     )
-    val screens = listOf(OriginScreen, OriginScreen, OriginScreen, OriginScreen)
+    val screens = listOf(OriginScreen, OriginScreen, OriginScreen, MineScreen(onLogout))
     val navigation = LocalNavigator.currentOrThrow
 
 
