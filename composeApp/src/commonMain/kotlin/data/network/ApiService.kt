@@ -1,5 +1,6 @@
 package data.network
 
+import getPlatform
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -10,7 +11,7 @@ class ApiService(private val client: HttpClient) {
     
     suspend fun doLogin(account: String, password: String): String {
         return client
-            .post("https://snowyapi.xiaonuo.vip/auth/b/doLogin") {
+            .post("${getPlatform().baseUrl}/auth/b/doLogin") {
                 contentType(ContentType.Application.Json)
                 setBody(LoginReq(account, SmUtils.doSm2Encrypt(password)))
             }.body<SnowyRes<String>>().data ?: throw RuntimeException("123")

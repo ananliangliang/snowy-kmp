@@ -19,6 +19,14 @@ kotlin {
             commonWebpackConfig {
                 outputFileName = "composeApp.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
+                    proxy = mutableMapOf(
+                        "/auth" to mapOf(
+                            "target" to "https://snowyapi.xiaonuo.vip",
+                            "changeOrigin" to true, // change origin only change the Host headers
+                            "headers" to mapOf("Origin" to "https://snowyapi.xiaonuo.vip"),
+
+                        )
+                    )
                     static = (static ?: mutableListOf()).apply {
                         // Serve sources to debug inside browser
                         add(project.projectDir.path)
