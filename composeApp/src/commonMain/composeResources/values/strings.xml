@@ -5,4 +5,7 @@
     <string name="login">Login</string>
     
     <string name="nav_home">Home</string>
+    <string name="nav_workbench">Workbench</string>
+    <string name="nav_massage">Message</string>
+    <string name="nav_mine">Mine</string>
 </resources>

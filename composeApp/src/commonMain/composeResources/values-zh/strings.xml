@@ -5,4 +5,7 @@
     <string name="login">登录</string>
     
     <string name="nav_home">主页</string>
+    <string name="nav_workbench">工作台</string>
+    <string name="nav_massage">消息</string>
+    <string name="nav_mine">我的</string>
 </resources>
