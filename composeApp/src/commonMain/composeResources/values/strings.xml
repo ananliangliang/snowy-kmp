@@ -3,6 +3,7 @@
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     
     <string name="nav_home">Home</string>
     <string name="nav_workbench">Workbench</string>

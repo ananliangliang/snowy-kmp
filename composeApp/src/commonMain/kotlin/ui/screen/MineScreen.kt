@@ -12,14 +12,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
+import snowy_kmp.composeapp.generated.resources.Res
+import snowy_kmp.composeapp.generated.resources.logout
 
 data class MineScreen(val onLogout: () -> Unit) : Screen {
 
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
         Column {
             ListItem(
-                { Text("Three line list item") },
+                { Text(stringResource(Res.string.logout)) },
                 Modifier.clickable { onLogout() },
                 leadingContent = { Icon(Icons.AutoMirrored.Filled.Send, null) },
                 trailingContent = { Icon(Icons.Filled.ChevronRight, null) }
