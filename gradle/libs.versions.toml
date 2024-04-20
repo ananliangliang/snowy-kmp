@@ -22,6 +22,8 @@ kotlin = "1.9.23"
 ksp = "1.9.23-1.0.20"
 ktor = "3.0.0-beta-2-eap-912" # 3.0.0-beta-2-eap-9122为支持wasm js的最新版本
 voyager = "1.1.0-alpha03" # alpha03之后才支持wasm js
+window-size = "0.5.0" # 判断窗口大小
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -51,6 +53,7 @@ ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "kto
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager"}
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
+window-size-multiplatform = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "window-size" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

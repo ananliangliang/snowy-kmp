@@ -80,6 +80,7 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.tab.navigator)
+            implementation(libs.window.size.multiplatform)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

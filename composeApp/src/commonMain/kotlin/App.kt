@@ -1,20 +1,18 @@
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import di.koinModule
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
-import ui.nav.NavBar
-import ui.tab.HomeTab
+import ui.nav.ResponsiveScaffold
 import ui.screen.LoginScreen
+import ui.tab.HomeTab
+import ui.tab.MessageTab
+import ui.tab.MineTab
+import ui.tab.WorkbenchTab
 
 @Composable
 @Preview
@@ -27,11 +25,12 @@ fun App() {
 
             if (isLogin)
                 TabNavigator(HomeTab) {
-                    Scaffold(
-                        bottomBar = { NavBar { isLogin = false } },
-                        content = { Box(Modifier.padding(it)) { CurrentTab() } },
-                        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-                    )
+                    ResponsiveScaffold(
+                        listOf(HomeTab, WorkbenchTab, MessageTab, MineTab { isLogin = false }),
+                        snackbarHostState
+                    ) {
+                        CurrentTab()
+                    }
                 }
             else
                 LoginScreen {
