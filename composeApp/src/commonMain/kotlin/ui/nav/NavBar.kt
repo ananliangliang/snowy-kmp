@@ -1,62 +1,49 @@
 package ui.nav
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Chat
-import androidx.compose.material.icons.automirrored.outlined.Chat
-import androidx.compose.material.icons.filled.Apps
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.Apps
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.stringResource
-import snowy_kmp.composeapp.generated.resources.*
-import ui.screen.MineScreen
-import ui.screen.OriginScreen
+import androidx.compose.runtime.Composable
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import ui.tab.HomeTab
+import ui.tab.MessageTab
+import ui.tab.MineTab
+import ui.tab.WorkbenchTab
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun NavBar(onLogout: () -> Unit) {
-    var selectedItem by remember { mutableIntStateOf(0) }
-    val items = listOf(
-        stringResource(Res.string.nav_home),
-        stringResource(Res.string.nav_workbench),
-        stringResource(Res.string.nav_massage),
-        stringResource(Res.string.nav_mine),
-    )
-    val filledIcons = listOf(
-        Icons.Filled.Home, Icons.Filled.Apps, Icons.AutoMirrored.Filled.Chat, Icons.Filled.Person
-    )
-    val outlinedIcons = listOf(
-        Icons.Outlined.Home, Icons.Outlined.Apps, Icons.AutoMirrored.Outlined.Chat, Icons.Outlined.Person
-    )
-    val screens = listOf(OriginScreen, OriginScreen, OriginScreen, MineScreen(onLogout))
-    val navigation = LocalNavigator.currentOrThrow
-
-
-
     NavigationBar {
-        items.forEachIndexed { index, item ->
-            val isSelected = selectedItem == index
-            NavigationBarItem(
-                icon = {
-                    Icon(if (isSelected) filledIcons[index] else outlinedIcons[index], contentDescription = item)
-                },
-                label = { Text(item) },
-                selected = isSelected,
-                onClick = {
-                    selectedItem = index
-                    navigation.push(screens[index])
-                }
-            )
-        }
+        TabNavigationItem(HomeTab)
+        TabNavigationItem(WorkbenchTab)
+        TabNavigationItem(MessageTab)
+        TabNavigationItem(MineTab(onLogout))
     }
+}
+
+
+@Composable
+private fun RowScope.TabNavigationItem(tab: TabExt) {
+    val tabNavigator = LocalTabNavigator.current
+    val selected = tabNavigator.current == tab
+
+    NavigationBarItem(
+        selected,
+        { tabNavigator.current = tab },
+        {
+            Icon(
+                painter = if (selected) tab.optionsExt.selectedIcon else tab.optionsExt.icon,
+                contentDescription = tab.options.title
+            )
+        },
+        label = { Text(tab.options.title) },
+    )
+}
+
+@Composable
+@Preview
+fun NavBarPreview() {
+    NavBar { }
 }

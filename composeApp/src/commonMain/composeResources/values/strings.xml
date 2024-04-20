@@ -7,6 +7,9 @@
     
     <string name="nav_home">Home</string>
     <string name="nav_workbench">Workbench</string>
-    <string name="nav_massage">Message</string>
+    <string name="nav_message">Message</string>
     <string name="nav_mine">Mine</string>
+
+    <string name="mine_edit_info">Edit info</string>
+    <string name="mine_change_pwd">Change password</string>
 </resources>

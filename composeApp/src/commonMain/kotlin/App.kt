@@ -6,15 +6,15 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.navigator.CurrentScreen
-import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import di.koinModule
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
 import ui.nav.NavBar
+import ui.tab.HomeTab
 import ui.screen.LoginScreen
-import ui.screen.OriginScreen
 
 @Composable
 @Preview
@@ -26,10 +26,10 @@ fun App() {
             val coroutineScope = rememberCoroutineScope()
 
             if (isLogin)
-                Navigator(OriginScreen) {
+                TabNavigator(HomeTab) {
                     Scaffold(
                         bottomBar = { NavBar { isLogin = false } },
-                        content = { Box(Modifier.padding(it)) { CurrentScreen() } },
+                        content = { Box(Modifier.padding(it)) { CurrentTab() } },
                         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
                     )
                 }
