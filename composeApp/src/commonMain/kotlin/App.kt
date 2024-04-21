@@ -1,5 +1,11 @@
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.*
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
@@ -18,7 +24,7 @@ import ui.tab.WorkbenchTab
 @Preview
 fun App() {
     KoinApplication({ modules(koinModule) }) {
-        MaterialTheme {
+        MaterialTheme(if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()) {
             var isLogin by remember { mutableStateOf(false) }
             val snackbarHostState = remember { SnackbarHostState() }
             val coroutineScope = rememberCoroutineScope()
@@ -33,11 +39,11 @@ fun App() {
                     }
                 }
             else
-                LoginScreen {
-                    coroutineScope.launch {
-                        snackbarHostState.showSnackbar(it)
+                Surface {
+                    LoginScreen {
+                        coroutineScope.launch { snackbarHostState.showSnackbar(it) }
+                        isLogin = true
                     }
-                    isLogin = true
                 }
         }
     }
