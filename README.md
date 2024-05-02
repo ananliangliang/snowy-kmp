@@ -7,6 +7,8 @@ Snowy谐音“小诺”，恰应小诺团队名称；意思为”下雪的、纯
 * wasm js测试运行报错
 * 统一所有平台的版本
 * Android Studio无法运行ios
+* 切换为官方的navigation库
+* 增加底栏icon切换动画
 
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.

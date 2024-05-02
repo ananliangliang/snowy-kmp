@@ -21,7 +21,7 @@ koin-compose = "1.2.0-alpha3"
 kotlin = "1.9.23"
 ksp = "1.9.23-1.0.20"
 ktor = "3.0.0-beta-2-eap-912" # 3.0.0-beta-2-eap-9122为支持wasm js的最新版本
-voyager = "1.1.0-alpha03" # alpha03之后才支持wasm js
+navigation-compose = "2.7.0-alpha03"
 window-size = "0.5.0" # 判断窗口大小
 
 
@@ -51,8 +51,7 @@ ktor-client-java = { module = "io.ktor:ktor-client-java", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager"}
-voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 window-size-multiplatform = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "window-size" }
 
 [plugins]
