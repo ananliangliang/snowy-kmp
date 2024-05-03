@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../composeApp"
 
 SPEC CHECKSUMS:
-  composeApp: 166ac49f04e69ac1f5b4b90cb78bbcb50924aa0c
+  composeApp: 195185ac24a062753c5f510f672bcf640a1acca9
   GMObjC: 5e251e7ab2bf8127dda70f90e827a5323137ca7f
   GMOpenSSL: 0c120d112d283fca2518c754c2d98e7993907c3d
 

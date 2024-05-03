@@ -35,10 +35,9 @@ fun ResponsiveScaffold(
                 TabNavigationRail(navController, tabs)
                 content()
             }
-        else if (sizeClass == Medium)
-            content()
-         if (sizeClass == Expanded && showNav) TabNavigationDrawer(navController, tabs) { content() }
-         else if (sizeClass == Expanded) content()
+        else if (sizeClass == Medium) content()
+        if (sizeClass == Expanded && showNav) TabNavigationDrawer(navController, tabs) { content() }
+        else if (sizeClass == Expanded) content()
     }
 }
 
