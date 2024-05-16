@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
@@ -48,7 +47,6 @@ private fun NavController.getCurrentRoute(): String {
     return backStackEntry?.destination?.route ?: ""
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun TabNavigationBar(navController: NavController, tabs: List<Screen.Tab>) {
     val currentRoute = navController.getCurrentRoute()
@@ -65,7 +63,6 @@ private fun TabNavigationBar(navController: NavController, tabs: List<Screen.Tab
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun TabNavigationRail(navController: NavController, tabs: List<Screen.Tab>) {
     val currentRoute = navController.getCurrentRoute()
@@ -82,7 +79,6 @@ private fun TabNavigationRail(navController: NavController, tabs: List<Screen.Ta
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun TabNavigationDrawer(
     navController: NavController,

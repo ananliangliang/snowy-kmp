@@ -1,4 +1,4 @@
-package ui.tab
+package ui.screen
 
 import Greeting
 import androidx.compose.animation.AnimatedVisibility
@@ -10,12 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import snowy_kmp.composeapp.generated.resources.Res
 import snowy_kmp.composeapp.generated.resources.compose_multiplatform
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun HomeScreen() {
     var showContent by remember { mutableStateOf(false) }
@@ -31,4 +30,10 @@ fun HomeScreen() {
             }
         }
     }
+}
+
+@Composable
+@Preview
+fun HomeScreenPreview() {
+    HomeScreen()
 }

@@ -14,14 +14,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import data.network.ApiService
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 import snowy_kmp.composeapp.generated.resources.*
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun LoginScreen(apiService: ApiService = koinInject(), onLogin: (String) -> Unit,) {
     Row(

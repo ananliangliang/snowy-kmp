@@ -27,7 +27,7 @@ import ui.screen.LoginScreen
 import ui.screen.MessageScreen
 import ui.screen.MineScreen
 import ui.screen.WorkbenchScreen
-import ui.tab.HomeScreen
+import ui.screen.HomeScreen
 
 @Composable
 @Preview

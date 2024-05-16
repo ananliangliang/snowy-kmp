@@ -1,5 +1,6 @@
 package ui.screen
 
+import Screen
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
@@ -14,7 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import org.jetbrains.compose.resources.ExperimentalResourceApi
+import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import snowy_kmp.composeapp.generated.resources.Res
@@ -22,7 +23,6 @@ import snowy_kmp.composeapp.generated.resources.logout
 import snowy_kmp.composeapp.generated.resources.mine_change_pwd
 import snowy_kmp.composeapp.generated.resources.mine_edit_info
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun MineScreen(navController: NavController) {
 
@@ -54,4 +54,5 @@ fun MineScreen(navController: NavController) {
 @Composable
 @Preview
 fun MineScreenPreview() {
+    MineScreen(rememberNavController())
 }
