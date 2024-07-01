@@ -9,7 +9,9 @@ import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -17,17 +19,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import di.koinModule
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
 import snowy_kmp.composeapp.generated.resources.*
 import ui.nav.ResponsiveScaffold
-import ui.screen.LoginScreen
-import ui.screen.MessageScreen
-import ui.screen.MineScreen
-import ui.screen.WorkbenchScreen
-import ui.screen.HomeScreen
+import ui.screen.*
 
 @Composable
 @Preview
@@ -65,7 +62,6 @@ fun App() {
 }
 
 
-@OptIn(ExperimentalResourceApi::class)
 sealed class Screen(
     val route: String,
     val title: StringResource,

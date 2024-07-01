@@ -1,0 +1,1 @@
+config.devServer.proxy[0].headers = { 'Origin': 'https://snowyapi.xiaonuo.vip' }
